@@ -148,7 +148,21 @@ function endGame() {
     if (initials === null) {
       console.log("nothing entered");
     } else {
-      let;
+      let finalScore = {
+        initials: initials,
+        score: finalTimerCount,
+      };
+      console.log(finalScore);
+      let allScores = localStorage.getItem("allScores");
+      if (allScores === null) {
+        allScores = [];
+      } else {
+        allScores = JSON.parse(allScores);
+      }
+      allScores.push(finalScore);
+      let highScores = JSON.stringify(allScores);
+      localStorage.setItem("allScores", highScores);
+      window.location.replace("./highScore.html");
     }
   });
 
