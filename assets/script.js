@@ -10,42 +10,42 @@ let previousResult = "";
 let finalTimerCount;
 const questions = [
   {
-    title: "what is david blaine's first name?",
-    answers: ["david", "ben", "chris", "pork"],
-    correct: "david",
+    title: "In what year did the first full-length episode of The Simpsons air?",
+    answers: ["1988", "1989", "1990", "1991"],
+    correct: "1989",
   },
   {
-    title: "what is brett gould's first name?",
-    answers: ["brett", "ben", "chris", "pork"],
-    correct: "brett",
+    title: "What is the name of Homer's favorite bar?",
+    answers: ["Sal's", "Joe's", "Moe's", "Lenny's"],
+    correct: "Moe's",
+  },
+  {
+    title: "What street do the Simpsons live on?",
+    answers: ["Evergreen Ter", "Pine Grove Ave", "Main St", "Harrison St"],
+    correct: "Evergreen Ter",
+  },
+  {
+    title: "Who shot Mr. Burns?",
+    answers: ["Homer", "Bart", "Barney", "Maggie"],
+    correct: "Maggie",
+  },
+  {
+    title: "How old is Bart Simpson?",
+    answers: ["10", "11", "12", "13"],
+    correct: "10",
   },
 ];
 let qIndex = 0;
-let timerCount = 20;
-//let isWin = false;
-//functions
-// function startGame() {
-//   //clear out previous question answers
-//   answersDiv.textContent = "";
-//   //show first question with answers
-//   questionDiv.innerHTML = questions[qIndex].title;
-//   //loop through answers
-// questions[qIndex].answers.forEach((answer) => {
-//   //create element button, add attributes (value and text and click event), and append button to the answersDiv
-//   const answerBtn = document.createElement("button");
-//   answerBtn.textContent = answer;
-//   answerBtn.setAttribute("value", answer);
-//   answerBtn.onclick = answerClick;
-//   answersDiv.appendChild(answerBtn);
-// });
-// }
+let timerCount = 60;
 
+//start game
 function startGame() {
   titleDiv.innerHTML = "";
   nextQuestion();
   startTimer();
 }
 
+//function to advance to the next question
 function nextQuestion() {
   answersDiv.textContent = "";
   questionDiv.innerHTML = questions[qIndex].title;
@@ -56,45 +56,27 @@ function nextQuestion() {
     answerBtn.setAttribute("value", answer);
     answerBtn.onclick = answerClick;
     answersDiv.appendChild(answerBtn);
+    answerBtn.className = "answer-button";
     resultDiv.textContent = previousResult;
   });
 }
 
 //answer click function
-// function answerClick() {
-//   //determine the answer the user chose
-//   let clickedAnswer = this.value;
-//   //check to see if the answer is correct
-//   //let user know they chose correctly
-//   if (clickedAnswer === questions[qIndex].correct) {
-//     alert("CORRECT!");
-//     //move user to next question or end game
-//     qIndex++;
-//     if (questions.length > qIndex) {
-//       // startGame();
-//       nextQuestion();
-//     } else {
-//       endGame();
-//     }
-//   } else {
-//     //let them know they got it wrong and subtract time from timer
-//     alert("WRONG!");
-//     timerCount -= 5;
-//   }
-// }
-
 function answerClick() {
   //determine the answer the user chose
   let clickedAnswer = this.value;
   if (clickedAnswer === questions[qIndex].correct) {
-    previousResult = "CORRECT!";
+    previousResult = "NICE!";
   } else {
-    previousResult = "INCORRECT!";
-    timerCount -= 5;
+    previousResult = "WRONG!";
+    if (timerCount >= 5) {
+      timerCount -= 5;
+    }
   }
   qIndex++;
   if (questions.length > qIndex) {
     nextQuestion();
+    S;
   } else {
     finalTimerCount = timerCount;
     clearInterval(startTimer);
@@ -102,23 +84,13 @@ function answerClick() {
   }
 }
 
-//end quiz
-
-// function endGame() {
-//   isWin = true;
-//   alert(`GAME OVER! Your score is ${timerCount}`);
-// }
-
+//end game is called when timer runs out or questions are all answered
 function endGame() {
-  //called when timer is over or all questions answered
-  //STOP THE TIMER AND SAVE THE VALUE
-  //allow to enter initials to be saved into local storage
-  //then redirects to high score html
   quizDiv.innerHTML = "";
 
   let allDoneMessage = document.createElement("h1");
   allDoneMessage.className = "all-done-h1";
-  allDoneMessage.textContent = "All Done!";
+  allDoneMessage.textContent = "That's it, man!";
   titleDiv.appendChild(allDoneMessage);
 
   let allDoneScore = document.createElement("h2");
@@ -143,10 +115,11 @@ function endGame() {
   submitBtn.textContent = "Submit";
   quizDiv.appendChild(submitBtn);
 
+  //event listener submits initials and final score to local storage
   submitBtn.addEventListener("click", function () {
     let initials = textBox.value;
-    if (initials === null) {
-      console.log("nothing entered");
+    if (initials === "") {
+      alert("Please enter your initials!");
     } else {
       let finalScore = {
         initials: initials,
@@ -165,34 +138,26 @@ function endGame() {
       window.location.replace("./highScore.html");
     }
   });
-
-  //Create and append html to hold final timer score
 }
 
 //timer
-
 function startTimer() {
-  // startGame();
   timer = setInterval(function () {
     timerCount--;
-    timerElement.textContent = timerCount;
-    //if (timerCount >= 0) {
+    timerElement.textContent = `Time: ${timerCount}`;
     //test if win condition is met
     if (questions.length <= qIndex && timerCount > 0) {
-      //clears interval and stops timer\
+      //clears interval and stops timer
       clearInterval(timer);
       timerElement.textContent = "";
-      //endGame();
     }
-    // }
-    if (timerCount <= 0) {
+    if (timerCount === 0) {
+      finalTimerCount = timerCount;
       clearInterval(timer);
       endGame();
     }
   }, 1000);
 }
-//TODO: save high score; score is just time left on the timer
 
 //initialization - start
-// startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", startGame);

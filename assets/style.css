@@ -1,0 +1,51 @@
+a {
+  font-size: 2rem;
+  color: #ffd90f;
+}
+
+body {
+  background-image: url("./images/clouds.jpeg");
+  font-family: "Homer Simpson Revised", sans-serif;
+  color: #ffd90f;
+  text-shadow: 2px 2px black;
+}
+
+button:hover {
+  background-color: gold;
+  cursor: pointer;
+  color: black;
+  text-shadow: none;
+}
+
+button {
+  border-radius: 30px;
+  background-color: #5eb9e8;
+  font-size: 2rem;
+  color: #ffd90f;
+  text-shadow: 2px 2px black;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+tr {
+  font-size: 2rem;
+}
+
+.all-done-h3 {
+  font-size: 2rem;
+}
+
+#timer {
+  font-size: 2rem;
+}
+
+#highScore {
+  list-style-type: none;
+  font-size: 2rem;
+}
+
+#question {
+  font-size: 3rem;
+}

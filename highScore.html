@@ -5,16 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Quiz Time</title>
+    <link href="http://fonts.cdnfonts.com/css/homer-simpson-revised" rel="stylesheet">
+    <title>The Simpsons Quiz</title>
 </head>
 
 <body>
-    <div>
-        <h1>Highscores</h1>
-        <ul id="highScore"></ul>
-        <button id="playAgain">Play Again</button>
-        <button id="clear" value="reset">Clear Scores</button>
+    <div class="text-center p-5">
+        <h1 class="font-weight-bold">Scoreboard</h1>
+        <div class="col-lg-4 col-md-4 col-sm-4 container justify-content-center">
+            <!-- table displaying high scores -->
+            <table class="mx-auto" id="highScore"></table>
+        </div>
+        <div class="mt-3">
+            <!-- play again button -->
+            <button id="playAgain">Play Again</button>
+            <!-- clear scores button -->
+            <button id="clear" value="reset">Clear Scores</button>
+        </div>
     </div>
 
     <script src="./assets/highScore.js"></script>

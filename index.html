@@ -5,30 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Quiz Time</title>
+    <link href="http://fonts.cdnfonts.com/css/homer-simpson-revised" rel="stylesheet">
+    <title>The Simpsons Quiz</title>
 </head>
 
-<body>
-    <!-- <h1>Coding Quiz Challenge</h1>
-    <button id="start">start the game</button> -->
-    <!-- questions and answers -->
-    <!-- <h2 id="question"></h2>
-    <div id="answers"></div>
-    <div id="timer"></div> -->
-    <!-- <script src="./assets/script.js"></script> -->
+<body class="p-3">
+    <!-- link for highscores page -->
+    <a href="./highScore.html">Scoreboard</a>
 
-
-    <div id='title'>
-        <h1>Coding Quiz Challenge</h1>
-        <button id="start">start the game</button>
+    <div class="row p-5 text-center">
+        <section class="col-12">
+            <div id='title'>
+                <h1 class="font-weight-bold">The Simpsons Quiz</h1>
+                <!-- start button -->
+                <button id="start">Start</button>
+            </div>
+            <!-- div for questions and answers -->
+            <div id='quiz'>
+                <div class="font-weight-bold p-3" id='question'></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 container justify-content-center">
+                    <div id='answers' class="list-group"></div>
+                </div>
+            </div>
     </div>
-    <div id='quiz'>
-        <div id='question'></div>
-        <div id='answers'></div>
-    </div>
-    <div id='result'></div>
+    <!-- timer div -->
     <div id='timer'></div>
+    <!-- div displaying result of previously answered question -->
+    <div id='result'></div>
+
+    </section>
+
     <script src="./assets/script.js"></script>
 </body>
 
